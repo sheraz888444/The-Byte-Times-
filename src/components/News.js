@@ -3,75 +3,50 @@ import Newsitems from './Newsitems'
 export default class News extends Component {
   
     articles=[
-      {
+     
+     {
       "source": {
-        "id": "cbc-news",
-        "name": "CBC News"
+        "id": "australian-financial-review",
+        "name": "Australian Financial Review"
       },
-      "author": "CBC News",
-      "title": "Trump threatens to hold up stadium deal if Washington Commanders don't switch back to Redskins | CBC Sports",
-      "description": "President Donald Trump is threatening to hold up a new stadium deal for Washington's NFL team if it does not restore its old name of the Redskins, which was considered offensive to Native Americans.",
-      "url": "http://www.cbc.ca/sports/trump-washington-football-cleveland-baseball-name-change-1.7589647",
-      "urlToImage": "https://i.cbc.ca/1.7589746.1753066828!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_1180/1255944811.jpg?im=Resize%3D620",
-      "publishedAt": "2025-07-21T03:22:20.9711699Z",
-      "content": "President Donald Trump is threatening to hold up a new stadium deal for Washington's NFL team if it does not restore its old name of the Redskins, which was considered offensive to Native Americans.\r… [+3697 chars]"
+      "author": "Angela Macdonald-Smith",
+      "title": "Taroom Trough: Investors follow Shell into the next big thing in oil and gas",
+      "description": "While the petroleum potential of the Queensland region was recognised decades ago, only advances in drilling technology and higher prices have opened it up.",
+      "url": "http://www.afr.com/companies/energy/investors-follow-shell-into-taroom-the-next-big-thing-in-oil-and-gas-20250716-p5mff7",
+      "urlToImage": "https://static.ffx.io/images/$zoom_0.2056%2C$multiply_3%2C$ratio_1.777778%2C$width_1059%2C$x_0%2C$y_188/t_crop_custom/c_scale%2Cw_800%2Cq_88%2Cf_jpg/t_afr_no_label_no_age_social_wm/840ae57aee045a285f209d18d7d9555a12a872a8",
+      "publishedAt": "2025-07-21T10:00:00Z",
+      "content": "A little-known basin three kilometres below the surface of south-east Queensland is quietly emerging as a real prospect to solve a looming gas shortage and boost the countrys perilous self-sufficienc… [+309 chars]"
     },
     {
       "source": {
-        "id": "fox-sports",
-        "name": "Fox Sports"
+        "id": "australian-financial-review",
+        "name": "Australian Financial Review"
       },
-      "author": null,
-      "title": "Which 10 Players Have The Best Odds to Win 2025 Defensive Player of the Year?",
-      "description": "Who will win 2025 NFL Defensive Player of the Year? FOX Sports Research compiled the list of the 10 players with the best odds.",
-      "url": "https://www.foxsports.com/stories/nfl/who-10-players-best-odds-win-defensive-player-year",
-      "urlToImage": "https://a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2024/12/1408/814/parsons.jpg?ve=1&tl=1",
-      "publishedAt": "2025-07-20T23:01:28Z",
-      "content": "Entering the 2025 NFL season, the race for Defensive Player of the Year appears to be wide open.\r\nFollowing Aaron Donalds retirement in 2024, there arent any active players whove won Defensive Player… [+6017 chars]"
+      "author": "James Thomson",
+      "title": "EDV ASX: Dan Murphy’s owner Endeavour Group named as a potential AI winner",
+      "description": "A new study of companies ranked for the importance of the technology to their investment case has identified a beaten-up liquor giant as a potential winner.",
+      "url": "http://www.afr.com/chanticleer/you-won-t-believe-the-asx-laggard-named-as-a-potential-ai-winner-20250721-p5mgo3",
+      "urlToImage": "https://static.ffx.io/images/$zoom_0.5187%2C$multiply_2%2C$ratio_1.777778%2C$width_1059%2C$x_0%2C$y_0/t_crop_custom/c_scale%2Cw_800%2Cq_88%2Cf_jpg/t_afr_opinion_no_age_social_wm/18c25ddd1861de417843785cb262c15e4b179f16",
+      "publishedAt": "2025-07-21T10:00:00Z",
+      "content": "There are four ways to play the artificial intelligence boom, according to Morgan Stanley.\r\nYou can stick with the obvious leaders, whose businesses are at the centre of the boom and have clear prici… [+112 chars]"
     },
     {
       "source": {
-        "id": "talksport",
-        "name": "TalkSport"
+        "id": "the-wall-street-journal",
+        "name": "The Wall Street Journal"
       },
-      "author": "Liam Hoofe",
-      "title": "Best betting sites UK | Top betting site offers for October 2024...",
-      "description": "Sports bettors in the UK are spoiled for choice among the best betting sites: If you want in-depth football betting markets, there is a bookmaker for you; if you want to bet on esports or TV events…",
-      "url": "https://talksport.com/betting/1760032/best-betting-sites-uk/",
-      "urlToImage": "https://talksport.com/wp-content/uploads/sites/5/2024/08/talksport-best-betting-sites-uk-op.jpg?strip=all&quality=100&w=1920&h=1080&crop=1",
-      "publishedAt": "2024-10-04T08:45:00Z",
-      "content": "Sports bettors in the UK are spoiled for choice among the best betting sites: If you want in-depth football betting markets, there is a bookmaker for you; if you want to bet on esports or TV events, … [+17381 chars]"
-    },
-    {
-      "source": {
-        "id": "bleacher-report",
-        "name": "Bleacher Report"
-      },
-      "author": null,
-      "title": "New Micah Parsons Show ",
-      "description": "Fan easier, fan faster and fan better with Bleacher Report. Keep up with the latest storylines, expert analysis, highlights and scores for all your favorite sports.",
-      "url": "https://bleacherreport.com/videos/490566-the-edge-w-micah-parsons-ep-11-vod",
-      "urlToImage": null,
-      "publishedAt": "2023-11-27T20:37:24.6381564Z",
+      "author": "Heather Haddon",
+      "title": "The Robots and Drones That Are Taking Over Your Food Delivery",
+      "description": "Technology removing humans in effort to make restaurant delivery faster and better",
+      "url": "https://www.wsj.com/tech/ai/food-delivery-robots-241fa069?mod=hp_featst_pos4",
+      "urlToImage": "https://images.wsj.net/im-93989956/social",
+      "publishedAt": "2025-07-21T09:30:00Z",
       "content": null
-    },
-    {
-      "source": {
-        "id": "bleacher-report",
-        "name": "Bleacher Report"
-      },
-      "author": null,
-      "title": " Mikal Bridges Interview ",
-      "description": "Fan easier, fan faster and fan better with Bleacher Report. Keep up with the latest storylines, expert analysis, highlights and scores for all your favorite sports.",
-      "url": "https://bleacherreport.com/videos/491103-taylor-rooks-x-mikal-bridges-vod",
-      "urlToImage": null,
-      "publishedAt": "2023-11-27T20:37:24.3882176Z",
-      "content": "Nets star sits down with Taylor Rooks for exclusive convo."
     }
     ]
     constructor(){
     super();
-    console.log("hello i am a constructor from news component")
+    
     this.state={
       articles:this.articles,
       loading:false,
@@ -82,16 +57,13 @@ export default class News extends Component {
       <div className='container my-3'>
       <h2>Latest News-Top Headlines</h2>
       <div className='row '>
-        <div className="col md-3">
-    <Newsitems title="mytitle" description="mydesc" imageUrl="https://i.cbc.ca/1.7589746.1753066828!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_1180/1255944811.jpg?im=Resize%3D620" newsUrl="TODO"/>
+        {this.state.articles.map((element)=>{
+  return <div className="col md-3" key={element.url} >
+    <Newsitems title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url}/>
     </div>
-     <div className="col md-3">
-    <Newsitems title="mytitle" description="mydesc"/>
-    </div>
-     <div className="col md-3">
-    <Newsitems title="mytitle" description="mydesc"/>
-    </div>
-    </div>
+        })}
+        
+     </div>
 
       </div>
     )
