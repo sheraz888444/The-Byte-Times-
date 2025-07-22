@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
-import Newsitems from './Newsitems'
-export default class News extends Component {
-  
-    articles=[
-      {
+{
+  "status": "ok",
+  "totalResults": 5,
+  "articles": [
+    {
       "source": {
         "id": "cbc-news",
         "name": "CBC News"
@@ -68,32 +67,5 @@ export default class News extends Component {
       "publishedAt": "2023-11-27T20:37:24.3882176Z",
       "content": "Nets star sits down with Taylor Rooks for exclusive convo."
     }
-    ]
-    constructor(){
-    super();
-    console.log("hello i am a constructor from news component")
-    this.state={
-      articles:this.articles,
-      loading:false,
-    }
-  }
-  render() {
-    return (
-      <div className='container my-3'>
-      <h2>Latest News-Top Headlines</h2>
-      <div className='row '>
-        <div className="col md-3">
-    <Newsitems title="mytitle" description="mydesc" imageUrl="https://i.cbc.ca/1.7589746.1753066828!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_1180/1255944811.jpg?im=Resize%3D620" newsUrl="TODO"/>
-    </div>
-     <div className="col md-3">
-    <Newsitems title="mytitle" description="mydesc"/>
-    </div>
-     <div className="col md-3">
-    <Newsitems title="mytitle" description="mydesc"/>
-    </div>
-    </div>
-
-      </div>
-    )
-  }
+  ]
 }
