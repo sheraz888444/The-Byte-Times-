@@ -1,71 +1,96 @@
-import React, { Component } from 'react'
-import Newsitems from './Newsitems'
+import React, { Component } from 'react';
+import Newsitems from './Newsitems';
+
 export default class News extends Component {
-  
-    articles=[
-     
-     {
-      "source": {
-        "id": "australian-financial-review",
-        "name": "Australian Financial Review"
-      },
-      "author": "Angela Macdonald-Smith",
-      "title": "Taroom Trough: Investors follow Shell into the next big thing in oil and gas",
-      "description": "While the petroleum potential of the Queensland region was recognised decades ago, only advances in drilling technology and higher prices have opened it up.",
-      "url": "http://www.afr.com/companies/energy/investors-follow-shell-into-taroom-the-next-big-thing-in-oil-and-gas-20250716-p5mff7",
-      "urlToImage": "https://static.ffx.io/images/$zoom_0.2056%2C$multiply_3%2C$ratio_1.777778%2C$width_1059%2C$x_0%2C$y_188/t_crop_custom/c_scale%2Cw_800%2Cq_88%2Cf_jpg/t_afr_no_label_no_age_social_wm/840ae57aee045a285f209d18d7d9555a12a872a8",
-      "publishedAt": "2025-07-21T10:00:00Z",
-      "content": "A little-known basin three kilometres below the surface of south-east Queensland is quietly emerging as a real prospect to solve a looming gas shortage and boost the countrys perilous self-sufficienc… [+309 chars]"
-    },
-    {
-      "source": {
-        "id": "australian-financial-review",
-        "name": "Australian Financial Review"
-      },
-      "author": "James Thomson",
-      "title": "EDV ASX: Dan Murphy’s owner Endeavour Group named as a potential AI winner",
-      "description": "A new study of companies ranked for the importance of the technology to their investment case has identified a beaten-up liquor giant as a potential winner.",
-      "url": "http://www.afr.com/chanticleer/you-won-t-believe-the-asx-laggard-named-as-a-potential-ai-winner-20250721-p5mgo3",
-      "urlToImage": "https://static.ffx.io/images/$zoom_0.5187%2C$multiply_2%2C$ratio_1.777778%2C$width_1059%2C$x_0%2C$y_0/t_crop_custom/c_scale%2Cw_800%2Cq_88%2Cf_jpg/t_afr_opinion_no_age_social_wm/18c25ddd1861de417843785cb262c15e4b179f16",
-      "publishedAt": "2025-07-21T10:00:00Z",
-      "content": "There are four ways to play the artificial intelligence boom, according to Morgan Stanley.\r\nYou can stick with the obvious leaders, whose businesses are at the centre of the boom and have clear prici… [+112 chars]"
-    },
-    {
-      "source": {
-        "id": "the-wall-street-journal",
-        "name": "The Wall Street Journal"
-      },
-      "author": "Heather Haddon",
-      "title": "The Robots and Drones That Are Taking Over Your Food Delivery",
-      "description": "Technology removing humans in effort to make restaurant delivery faster and better",
-      "url": "https://www.wsj.com/tech/ai/food-delivery-robots-241fa069?mod=hp_featst_pos4",
-      "urlToImage": "https://images.wsj.net/im-93989956/social",
-      "publishedAt": "2025-07-21T09:30:00Z",
-      "content": null
-    }
-    ]
-    constructor(){
+  constructor() {
     super();
-    
-    this.state={
-      articles:this.articles,
-      loading:false,
-    }
+    this.state = {
+      loading: false,
+      articles: [],
+      page: 1,
+      pageSize: 4,
+      totalResults: 36,
+      endReached: false,
+    };
   }
+
+  fetchData = async (page) => {
+    const { pageSize } = this.state;
+    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=1dd129b4b2a240ea844d07720cebf119&page=${page}&pageSize=${pageSize}`;
+    let data = await fetch(url);
+    let parsedData = await data.json();
+    console.log(parsedData);
+    this.setState({
+      articles: parsedData.articles || [],
+      page: page,
+      endReached: page >= Math.ceil(this.state.totalResults / pageSize)
+    });
+  };
+
+  componentDidMount() {
+    this.fetchData(this.state.page);
+  }
+
+  handlePrevClick = () => {
+    if (this.state.page > 1) {
+      this.fetchData(this.state.page - 1);
+    }
+  };
+
+  handleNextClick = () => {
+    const maxPage = Math.ceil(this.state.totalResults / this.state.pageSize);
+    if (this.state.page < maxPage) {
+      this.fetchData(this.state.page + 1);
+    } else {
+      this.setState({ endReached: true });
+    }
+  };
+
   render() {
     return (
-      <div className='container my-3'>
-      <h2>Latest News-Top Headlines</h2>
-      <div className='row '>
-        {this.state.articles.map((element)=>{
-  return <div className="col md-3" key={element.url} >
-    <Newsitems title={element.title} description={element.description} imageUrl={element.urlToImage} newsUrl={element.url}/>
-    </div>
-        })}
-        
-     </div>
+      <div className="container my-4">
+        <h2 className="text-center mb-4">📰 Latest News - Top Headlines</h2>
 
+        <div className="row g-4">
+          {this.state.articles.map((element) => {
+            return (
+              <div className="col-md-3" key={element.url}>
+                <Newsitems
+                  title={element.title ? element.title.slice(0, 50) : ''}
+                  description={element.description ? element.description.slice(0, 88) : ''}
+                  imageUrl={element.urlToImage}
+                  newsUrl={element.url}
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        {this.state.endReached && (
+          <div className="alert alert-info mt-4 text-center">
+            <strong>You've reached the end of the news feed.</strong> Please go back to previous pages.
+          </div>
+        )}
+
+        <div className="d-flex justify-content-between my-4">
+          <button
+            disabled={this.state.page <= 1}
+            type="button"
+            className="btn btn-dark"
+            onClick={this.handlePrevClick}
+          >
+            &larr; Previous
+          </button>
+          <button
+            disabled={this.state.endReached}
+            type="button"
+            className="btn btn-dark"
+            onClick={this.handleNextClick}
+          >
+            Next &rarr;
+          </button>
+        </div>
       </div>
-    )
+    );
   }
 }
