@@ -1,33 +1,46 @@
 import React, { Component } from 'react';
 import Newsitems from './Newsitems';
+import PropTypes from 'prop-types'
 
 export default class News extends Component {
+  static defaultProps = {
+    country: 'us',
+    pageSize:'8',
+    category:'entertainment',
+  }
+  static propTypes = {
+  country: PropTypes.string,
+  pageSize:PropTypes.number,
+  category:PropTypes.string,
+};
+
   constructor() {
     super();
     this.state = {
       loading: false,
       articles: [],
       page: 1,
-      pageSize: 4,
-      totalResults: 36,
+      totalResults: 0, // ✅ Initially 0, will be updated from API
       endReached: false,
     };
   }
 
   fetchData = async (page) => {
-    const { pageSize } = this.state;
-    this.setState({ loading: true }); // 🌀 Start loading
+    this.setState({ loading: true });
 
-    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=1dd129b4b2a240ea844d07720cebf119&page=${page}&pageSize=${pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=1dd129b4b2a240ea844d07720cebf119&page=${page}&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     console.log(parsedData);
 
+    const totalPages = Math.ceil(parsedData.totalResults / this.props.pageSize);
+
     this.setState({
       articles: parsedData.articles || [],
+      totalResults: parsedData.totalResults || 0, // ✅ update from API
       page: page,
-      endReached: page >= Math.ceil(this.state.totalResults / pageSize),
-      loading: false, // ✅ Stop loading
+      endReached: page >= totalPages,
+      loading: false,
     });
   };
 
@@ -42,7 +55,7 @@ export default class News extends Component {
   };
 
   handleNextClick = () => {
-    const maxPage = Math.ceil(this.state.totalResults / this.state.pageSize);
+    const maxPage = Math.ceil(this.state.totalResults / this.props.pageSize);
     if (this.state.page < maxPage) {
       this.fetchData(this.state.page + 1);
     } else {
@@ -53,11 +66,8 @@ export default class News extends Component {
   render() {
     return (
       <div className="container my-4">
-
-        {/* ✅ Main Heading */}
         <h2 className="text-center mb-5 display-6 fw-bold">📰 Latest News - Top Headlines</h2>
 
-        {/* ✅ Spinner while loading */}
         {this.state.loading ? (
           <div className="d-flex justify-content-center align-items-center" style={{ height: '50vh' }}>
             <div className="spinner-border text-primary" role="status">
@@ -66,7 +76,6 @@ export default class News extends Component {
           </div>
         ) : (
           <>
-            {/* ✅ News Grid */}
             <div className="row g-4">
               {this.state.articles.map((element) => {
                 return (
@@ -76,24 +85,23 @@ export default class News extends Component {
                       description={element.description ? element.description.slice(0, 88) : ''}
                       imageUrl={element.urlToImage}
                       newsUrl={element.url}
+                      author={!element.author ? 'unknown resourse':element.author}
+                      date={element.publishedAt}
                     />
                   </div>
                 );
               })}
             </div>
 
-            {/* ✅ End message */}
             {this.state.endReached && (
               <div className="alert alert-info mt-4 text-center">
                 <strong>You've reached the end of the news feed.</strong> Please go back to previous pages.
               </div>
             )}
 
-            {/* ✅ Pagination Buttons */}
             <div className="d-flex justify-content-between my-4">
               <button
                 disabled={this.state.page <= 1 || this.state.loading}
-                type="button"
                 className="btn btn-dark"
                 onClick={this.handlePrevClick}
               >
@@ -101,7 +109,6 @@ export default class News extends Component {
               </button>
               <button
                 disabled={this.state.endReached || this.state.loading}
-                type="button"
                 className="btn btn-dark"
                 onClick={this.handleNextClick}
               >
