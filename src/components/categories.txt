@@ -1,7 +1,0 @@
-business
-entertainment
-genera
-lhealth
-science
-sports
-technology
