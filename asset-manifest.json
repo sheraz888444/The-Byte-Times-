@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/The-Byte-Times-/static/css/main.1c6cc986.css",
+    "main.js": "/The-Byte-Times-/static/js/main.3a621c75.js",
+    "static/js/488.6124d4ca.chunk.js": "/The-Byte-Times-/static/js/488.6124d4ca.chunk.js",
+    "index.html": "/The-Byte-Times-/index.html",
+    "main.1c6cc986.css.map": "/The-Byte-Times-/static/css/main.1c6cc986.css.map",
+    "main.3a621c75.js.map": "/The-Byte-Times-/static/js/main.3a621c75.js.map",
+    "488.6124d4ca.chunk.js.map": "/The-Byte-Times-/static/js/488.6124d4ca.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1c6cc986.css",
+    "static/js/main.3a621c75.js"
+  ]
+}
